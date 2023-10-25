@@ -1,0 +1,8 @@
+docker container run \    
+    --detach \
+    --name=notes-db \
+    --env POSTGRES_DB=notesdb \
+    --env POSTGRES_PASSWORD=secret \
+    --network=notes-api-network \
+    postgres:12                       ------->> run container in background with name notes-db and env to db 
+                                                and a network who is already there

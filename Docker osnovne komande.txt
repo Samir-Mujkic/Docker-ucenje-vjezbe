@@ -1,0 +1,87 @@
+
+----------------------------------------BASIC DOCKER COMMANDS AND EXPLANATIONS OF COMMANDS------------------
+
+docker run hello-world ->The hello-world image is an example of minimal containerization with Docker. 
+                         It has a single program compiled from a hello.c file responsible for printing out the message you're seeing on your terminal.
+
+docker ps -a -> List all containers that are currently running or gave run in past
+
+
+docker container run --publish 8080:80 (name of image) -> Run a container from image in regristy,
+                                                          publish on 8080 on host system will be redirect ot 80 in container
+
+
+docker container run --detach --publish 8080:80 (name of image ) -> running when close terminal(work in background)
+
+
+docker container ls        -> list all running containers
+docker container ls -all   -> list all runnung containers and container who is stopped
+
+
+docker container run --detach --publish 8080:80 --name (ime containera) (name of image) -> + Start container and naming container
+
+
+docker container rename (ime containera) (novo ime conteneira) -> Rename container
+
+
+docker container stop (id or name of container) -> stop running container
+
+docker container kill (id or name of container ) -> kill running container
+
+
+docker container create -publish localport:containerport (name of image) -> Create without start container
+
+docker container rm (id or name of container) -> After stop container , REMOVE NOW
+
+docker container run -it ubunut -> start a interactive mode
+
+
+docker image build . -> Build image in path where is Dockerfile
+
+docker image run --detach --name nginx-custom --publish 8080:80 (id of image we previus build) -> run container with out image
+
+docker image tag (image id) (add image repo:add image tag) -> Tagging of repo and name of image
+
+docker image ls , docker image rm (name or id of image) -> list and remove image
+
+
+----------------------------------- DOCKER BIND MOUNT ------------------------------------------------    
+
+docker container run \
+    --rm \
+    --publish 3000:3000 \
+    --name hello-dock-dev \
+    --volume $(pwd):/home/node/app \
+    hello-dock:dev                       ------>> Run container from file and add "BIND MOUNT"
+
+
+
+docker container run \
+    --rm \
+    --detach \
+    --publish 3000:3000 \
+    --name hello-dock-dev \
+    --volume $(pwd):/home/node/app \
+    --volume /home/node/app/node_modules \
+    hello-dock:dev                          --------->> Run container from file and add "BIND MOUNT + ANONYMOUS VOLUME"
+
+           ---------------------------- DOCKER NETWORK--------------------------------
+
+docker network create (network bridge name) --> Create new network(bridge)
+
+docker network connect (name of network) (name of container) --> Connect network(bridge) with container
+
+docker netwrok disconnect (name of network) (name of container) --> Detach containers from network
+
+docker network rm (id or name of network) -> Remove a network
+
+
+
+---------------------------------------- DOCKER COMPOSE------------------------------------
+
+docker-compose --file docker-compose.yaml up --detach -> start docker compose with yaml file (must be there where is yaml file)
+
+docker-compose ps --> List services in Docker Compose
+
+docker-compose logs (service name) -> How to access logs from running service in Docker Compose
+
